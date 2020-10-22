@@ -1,0 +1,26 @@
+#nav-category .nav-link{
+    text-align: center;
+    color :rgb(255, 255, 255) !important;
+    text-transform: uppercase;
+    border-bottom: 3px solid #343a40 ;
+    margin-bottom: 0px;
+    cursor: pointer;
+  
+}
+
+.nav-link:hover{
+ 
+   border-bottom: 3px solid #00ffff !important;
+   text-decoration: none !important;
+
+   
+}
+
+.navbar{
+    padding: 0px !important;
+}
+
+.navbar-togler-icon{
+    color: azure !important;
+}
+
