@@ -15,6 +15,13 @@ import {
 const getRecipes = function(state = initialState, action) {
     switch (action.type) {
   
+      case  FETCH_MEMBERS_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          members: action.payload.members
+        };
       
         case FETCH_ERROR:
             return {

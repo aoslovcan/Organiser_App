@@ -48,7 +48,7 @@ function CreateNew() {
            
             sex: sex,
             email: email,
-            skills : skills,
+            skills : skills.map(m => m.name + " " + m.level),
             mainSkill: mainSkill,
             status: status
 
@@ -90,7 +90,7 @@ function CreateNew() {
                             value={sex}
                             id="sex"
                         >
-                            <option selected>sex</option>
+                            <option selected>gender</option>
                             <option value="m">m</option>
                             <option value="f">f</option>
 

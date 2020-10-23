@@ -2,8 +2,6 @@ import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
 export const FETCH_MEMBERS_SUCCESS = 'FETCH_MEMBERS_SUCCESS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 export const FETCH_MEMBERS_STARTED = 'FETCH_MEMBERS_STARTED';
@@ -53,20 +51,20 @@ const fetchError = error => {
     };
   };
 
-  /*export const fetchRecipes = () => {
+  export const fetchMembers = () => {
     return dispatch => {
-      dispatch(fetchRecipesStarted());
+      dispatch(fetchMembersStarted());
   
       axios
-        .get("http://localhost:3001/recipes")
+        .get("http://localhost:3001/members")
         .then(res => {
-          dispatch(fetchRecipesSuccess(res.data));
+          dispatch(fetchMembersSuccess(res.data));
         })
         .catch(err => {
           dispatch(fetchError(err.message));
         });
     };
-  };*/
+  };
 
   export const insertMember = (data) =>{
     return dispatch => {

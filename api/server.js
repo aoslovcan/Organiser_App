@@ -44,9 +44,9 @@ server.use((req, res, next) => {
 // aprove connection to server
 server.use(cors());
 
-server.get('/recipes', function (req, res) {
+server.get('/members', function (req, res) {
 
-  db.query('select * from recipes', function (error, results, fields) {
+  db.query('select * from members', function (error, results, fields) {
     if (error) throw error;
     res.end(JSON.stringify(results));
   });
@@ -56,13 +56,12 @@ server.get('/recipes', function (req, res) {
 server.post('/insert', function (req, res) {
   data = req.body
 
-  console.log(data);
+  console.log(data.skills);
 
-  const skills = data.skills.map(m => m.name + "," + m.level);
-  console.log(skills);
+  const dataS = data.skills.join(',');
 
  let sql = "INSERT INTO members (member_name, gender, email, skills, main_skills, status)" +
-    "VALUES('" + data.name + "','" + data.sex + "','" + data.email + "','" + skills + "','" + data.mainSkill+ "','" + data.status +"')";
+    "VALUES('" + data.name + "','" + data.sex + "','" + data.email + "','" + dataS + "','" + data.mainSkill+ "','" + data.status +"')";
 
   db.query(sql, function (err, result) {
     if (err) throw err;

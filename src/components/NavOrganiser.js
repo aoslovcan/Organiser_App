@@ -26,7 +26,7 @@ export default function NavOrganiser(props) {
                             <Link className="nav-link" href= "#">All members </Link>
                         </li>
                         <li className="nav-item col-md-3 ">
-                            <Link className="nav-link" href= "#">
+                            <Link className="nav-link" href= "/new">
                                 Add memebers
                                  </Link>
                         </li>
