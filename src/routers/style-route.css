@@ -8,4 +8,31 @@
 
 .members{
     color: black;
+    height: 100vh;
+}
+
+.members .container{
+    padding: 10px;
+}
+
+.skillModal{
+    background-color: rgb(0,0,0);
+    width: 500px;
+    float:right;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    padding: 5px;
+}
+
+.skillModal .list-group{
+    color: rgb(0,0,0) !important;
+}
+
+.skillUpdate{
+    height: 100vh;
+}
+
+.skillUpdate .container{
+    margin-top: 20%;
 }

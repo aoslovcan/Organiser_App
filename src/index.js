@@ -11,9 +11,7 @@ import  allReducers from './reducers';
 
 const middleware = [thunk]
 const initalState = {
-
 }
-
 let store = createStore( allReducers,initalState, composeWithDevTools(applyMiddleware(...middleware)));
 
 ReactDOM.render(

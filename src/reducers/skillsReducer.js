@@ -1,23 +1,22 @@
 import {
-  FETCH_MEMBERS_SUCCESS,
+  FETCH_SKILLS_SUCCESS,
   FETCH_ERROR,
-  FETCH_MEMBERS_STARTED,
-  INSERT_MEMBERS,
+  UPDATE_SKILLS,
 } from "../actions/index";
 
 const initialState = {
-  members: [],
+  skills: [],
   loading: false,
   error: null,
 };
-const membersReducer = function (state = initialState, action) {
+const skillsReducers = function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_MEMBERS_SUCCESS:
+    case FETCH_SKILLS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        members: action.payload.members,
+        skills: action.payload.skills,
       };
 
     case FETCH_ERROR:
@@ -26,14 +25,15 @@ const membersReducer = function (state = initialState, action) {
         loading: false,
         error: action.payload.error,
       };
-    case INSERT_MEMBERS:
+
+    case UPDATE_SKILLS:
       return {
         ...state,
-        members: action.payload.members,
+        skills: action.payload.skills,
       };
 
     default:
       return state;
   }
 };
-export default membersReducer;
+export default skillsReducers;

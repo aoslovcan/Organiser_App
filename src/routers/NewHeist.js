@@ -3,20 +3,19 @@ import "./style-route.css";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSelector, useDispatch } from "react-redux";
-import { insertMember } from "../actions/index";
+import { insertHeist } from "../actions/index";
 
-function CreateNew() {
-  const [member, setMember] = useState({
+function NewHeist() {
+  const [heist, setHeist] = useState({
     name: "",
-    sex: "",
-    email: "",
-    mainSkill: "mainSkill",
-    status: "",
+    location: "",
+    startTime: "",
+    endTime: "mainSkill",
   });
-  const { name, sex, email, mainSkill, status } = member;
-  const [skills, setSkills] = useState([{ name: "", level: "" }]);
+  const { name, location, startTime, endTime } = heist;
+  const [skills, setSkills] = useState([{ name: "", level: "", members: "" }]);
   const changeHandler = (e) => {
-    setMember({ ...member, [e.target.name]: e.target.value });
+    setHeist({ ...heist, [e.target.name]: e.target.value });
   };
   const dispatch = useDispatch();
   //Adding skills
@@ -42,15 +41,26 @@ function CreateNew() {
     const data = {
       name: name,
 
-      sex: sex,
-      email: email,
-      skills: skills,
-      mainSkill: mainSkill,
-      status: status,
+      location: location,
+      startTime: startTime,
+      endTime: endTime,
+      skills: skills.map(
+        (m) =>
+          "Name: " +
+          m.name +
+          "," +
+          " Level: " +
+          m.level +
+          "," +
+          " Members: " +
+          m.members +
+          "\n"
+      ),
     };
 
-    //console.log(data);
-    dispatch(insertMember(data));
+    console.log(data);
+
+    dispatch(insertHeist(data));
   };
 
   return (
@@ -62,7 +72,7 @@ function CreateNew() {
         >
           <div className="form-group">
             <h3 style={{ textAlign: "center", marginBottom: "10px" }}>
-              Potential heist member
+              Add Heist
             </h3>
           </div>
           <div className="form-group row">
@@ -75,27 +85,35 @@ function CreateNew() {
               value={name}
               onChange={changeHandler}
             />
-            <select
-              className="form-control col-sm-4 offset-sm-0 offset-md-2 "
+            <input
+              className="form-control col-sm-4 offset-sm-0 offset-md-2"
+              id="location"
+              name="location"
+              value={location}
               onChange={changeHandler}
-              name="sex"
-              value={sex}
-              id="sex"
-            >
-              <option selected>gender</option>
-              <option value="m">m</option>
-              <option value="f">f</option>
-            </select>
+              placeholder="Spain"
+              type="text"
+            />
           </div>
+
           <div className="form-group row">
             <input
-              className="form-control col-sm-10 offset-sm-0 offset-md-1"
-              id="email"
-              name="email"
-              value={email}
+              className="form-control col-sm-4 offset-sm-0 offset-md-1"
+              id="startTime"
+              name="startTime"
+              value={startTime}
               onChange={changeHandler}
-              placeholder="example@gmail.com"
-              type="email"
+              placeholder=""
+              type="datetime-local"
+            />
+            <input
+              className="form-control col-sm-4 offset-sm-0 offset-md-2"
+              id="endTime"
+              name="endTime"
+              value={endTime}
+              onChange={changeHandler}
+              placeholder=""
+              type="datetime-local"
             />
           </div>
           <div className="form-group row">
@@ -105,7 +123,7 @@ function CreateNew() {
             >
               <h5>Skills</h5>
             </label>
-            <div className="form-group row offset-sm-0 offset-md-2">
+            <div className="form-group row offset-sm-0 offset-md-1">
               {skills.map((x, i) => {
                 return (
                   <>
@@ -122,6 +140,14 @@ function CreateNew() {
                       name="level"
                       placeholder="***"
                       value={x.level}
+                      onChange={(e) => handleSkills(e, i)}
+                      style={{ margin: "1px 1px 0 1px" }}
+                    />
+                    <input
+                      className="form-control col-sm-2"
+                      name="members"
+                      placeholder="2"
+                      value={x.members}
                       onChange={(e) => handleSkills(e, i)}
                       style={{ margin: "1px 1px 0 1px" }}
                     />
@@ -149,47 +175,15 @@ function CreateNew() {
             </div>
           </div>
 
-          <div className="form-group row ">
-            <select
-              className="form-control col-sm-4 offset-sm-0 offset-md-1 "
-              onChange={changeHandler}
-              name="mainSkill"
-              value={mainSkill}
-              id="mainSkill"
-            >
-              {
-                <>
-                  <option selected>main skill</option>
-                  {skills.map((m) => (
-                    <option value={m.name}>{m.name}</option>
-                  ))}
-                </>
-              }
-            </select>
-
-            <select
-              className="form-control col-sm-4 offset-sm-0 offset-md-2 "
-              onChange={changeHandler}
-              name="status"
-              value={status}
-              id="status"
-            >
-              <option selected>status</option>
-              <option value="available">available</option>
-              <option value="expired">expired</option>
-              <option value="incarcerated">incarcerated</option>
-              <option value="retired">retired</option>
-            </select>
-          </div>
           <input
             id="btn-create"
             className="form-control col-md-4 offset-sm-0 offset-md-4"
             type="submit"
-            value="Add member"
+            value="Add heist"
           />
         </form>
       </div>
     </div>
   );
 }
-export default CreateNew;
+export default NewHeist;
